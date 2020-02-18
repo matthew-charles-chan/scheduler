@@ -25,6 +25,7 @@ export default function Form(props) {
             className="appointment__create-input text--semi-bold"
             value = { name } 
             type="text"
+            placeholder="Enter Student Name"
             onChange = {(event)=> {setName(event.target.value)}}
           />
         </form>
@@ -33,7 +34,7 @@ export default function Form(props) {
       <section className="appointment__card-right">
         <section className="appointment__actions">
           <Button onClick={cancel} danger>Cancel</Button>
-          <Button onClick={props.onSave} confirm>Save</Button>
+          <Button onClick={event => props.onSave(name, interviewer)} confirm>Save</Button>
         </section>
       </section>
     </main>

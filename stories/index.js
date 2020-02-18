@@ -167,7 +167,7 @@ storiesOf("InterviewerList", module)
       name = "Matthew Chan"
       interviewers = {interviewers}
       interviewer = {2}
-      onSave = {action("onSave")}
+      onSave = {action("onSave")()}
       onCancel = {action("onCancel")}
     />
   ))
