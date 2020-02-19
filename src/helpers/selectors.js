@@ -28,3 +28,12 @@ export function getInterview(state, interview) {
   }
   return interviewObject
 }
+
+
+  // const name = state.interviewers[interview.interviewer].name;
+  // const id = interview.interviewer
+  // const avatar = state.interviewers[interview.interviewer].avatar
+
+  // interviewer = {name, id, avatar}
+  
+  // obj = {interviewer, student }
