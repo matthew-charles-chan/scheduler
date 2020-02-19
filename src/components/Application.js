@@ -6,72 +6,34 @@ import "components/Application.scss";
 import DayList from "components/DayList";
 import Appointment from "components/Appointment"
 
-
-const appointments = [
-  {
-    id: 1,
-    time: "12pm",
-  },
-  {
-    id: 2,
-    time: "1pm",
-    interview: {
-      student: "HoHo Hoang",
-      interviewer: {
-        id: 1,
-        name: "Sylvia Palmer",
-        avatar: "https://i.imgur.com/LpaY82x.png",
-      }
-    }
-  },
-  {
-    id: 3,
-    time: "2pm",
-    interview: {
-      student: "Matthew Chan",
-      interviewer: {
-        id: 2,
-        name: "Tori Malcolm",
-        avatar: "https://i.imgur.com/Nmx0Qxo.png",
-      }
-    }
-  },
-  {
-    id: 4,
-    time: "3pm",
-  },
-  {
-    id: 5,
-    time: "4pm",
-    interview: {
-      student: "Olivia Power",
-      interviewer: {
-        id: 3,
-        name: "Mildred Nazir",
-        avatar: "https://i.imgur.com/T2WwVfS.png",
-      }
-    }
-  }
-  // {
-  //   id: "last",
-  //   time: "5pm",
-  // }
-];
-
+import { getAppointmentsForDay } from "helpers/selectors";
 
 
 
 export default function Application(props) {
-  const [day, setDay] = useState("Monday")
-  const [days, setDays] = useState([]); 
 
-  useEffect(() => {
-    axios.get(`http://localhost:8001/api/days`)
-    .then(response => setDays(response.data))
-  },[])
+  const [state,  setState] = useState({
+    day: "Monday",
+    days: [],
+    appointments: {}
+  })
+  const setDays = days => setState(prev => ({...prev, days}));
+  const setDay = day => setState(prev => ({ ...prev, day }));
+  const setAppointments = appointments => setState(prev => ({ ...prev, appointments }));
   
+  useEffect(() => {
+    Promise.all([
+      Promise.resolve(axios.get(`http://localhost:8001/api/days`)),
+      Promise.resolve(axios.get(`http://localhost:8001/api/appointments`)),
+      // Promise.resolve("third"),
+    ]).then((all) => {
+      setDays(all[0].data)
+      setAppointments(all[1].data)
+    });
+  },[])
 
-  console.log(day);
+  const appointments = getAppointmentsForDay(state, state.day)
+
   return (
     <main className="layout">
       <section className="sidebar">
@@ -83,8 +45,8 @@ export default function Application(props) {
         <hr className="sidebar__separator sidebar--centered" />
         <nav className="sidebar__menu">
           <DayList
-            days={days}
-            day={day}
+            days={state.days}
+            day={state.day}
             setDay={setDay}
           />
         </nav>
