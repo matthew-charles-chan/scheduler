@@ -7,11 +7,13 @@ import Show from "components/Appointment/Show";
 import Empty from "components/Appointment/Empty";
 import Form from "components/Appointment/Form";
 import Saving from "components/Appointment/Status";
+import Confirm from "components/Appointment/Confirm";
 
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
 const CREATE = "CREATE";
 const SAVING = "SAVING";
+const CONFIRM = "CONFIRM";
 
 export default function Appointment(props) {
   const { mode, transition, back } = useVisualMode(
@@ -26,6 +28,10 @@ export default function Appointment(props) {
     back()
   }
 
+  const confirm = () => {
+    transition(CONFIRM);
+  }
+
   const save = (name, interviewer) => {
     const interview = {
       student: name,
@@ -34,6 +40,13 @@ export default function Appointment(props) {
     transition(SAVING)
     props.bookInterview(props.id, interview).then(() => {
       transition(SHOW)
+    })
+  }
+
+  const destroy = () => {
+    transition(SAVING)
+    props.deleteInterview(props.id).then(() => {
+      transition(EMPTY)
     })
   }
 
@@ -46,11 +59,13 @@ export default function Appointment(props) {
         <Show
           student={props.interview.student}
           interviewer={props.interview.interviewer}
+          onDelete = { confirm }
         />)}
       {mode === CREATE && (
         <Form interviewers={props.interviewers} onCancel={ cancel } onSave={ save }
         />)}
       {mode === SAVING && <Saving message="Saving"/>}
+      {mode === CONFIRM && <Confirm onCancel = { cancel } onConfirm ={ destroy } />}
     </article>
   );
 }

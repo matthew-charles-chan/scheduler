@@ -39,6 +39,10 @@ export default function Application(props) {
     })
   }
 
+  function deleteInterview(id) {
+    return axios.delete(`http://localhost:8001/api/appointments/${id}`)
+  }
+
   
   useEffect(() => {
     Promise.all([
@@ -59,12 +63,13 @@ export default function Application(props) {
     const interview = getInterview(state, appointment.interview);
     return (
       <Appointment
-        key={appointment.id}
-        id={appointment.id}
-        time={appointment.time}
-        interview={interview}
-        interviewers={interviewers}
-        bookInterview={bookInterview}      
+        key={ appointment.id }
+        id={ appointment.id }
+        time={ appointment.time }
+        interview={ interview }
+        interviewers={ interviewers }
+        bookInterview={ bookInterview }
+        deleteInterview={ deleteInterview }      
       />
     );
   });
