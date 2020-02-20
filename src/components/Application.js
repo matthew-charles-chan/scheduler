@@ -33,12 +33,6 @@ export default function Application(props) {
     );
   },[])
 
-  // useEffect(()=> {
-  //   // console.log(state)
-  //   console.log(state.interviewers)
-  // },[state.day])
-
-
   const appointments = getAppointmentsForDay(state, state.day)
 
   const schedule = appointments.map((appointment) => {
@@ -48,7 +42,7 @@ export default function Application(props) {
         key={appointment.id}
         id={appointment.id}
         time={appointment.time}
-        interview={interview}
+        interview={interview}      
       />
     );
   });
