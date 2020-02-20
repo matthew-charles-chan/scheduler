@@ -23,10 +23,7 @@ export default function Appointment(props) {
   const cancel = () => {
     back()
   }
-
-
   
-  const interviewers = [];
     return (
     <article className="appointment">
       <Header time={props.time}/>
@@ -37,7 +34,7 @@ export default function Appointment(props) {
           interviewer={props.interview.interviewer}
         />)}
       {mode === CREATE && (
-        <Form interviewers={interviewers} onCancel={ cancel }
+        <Form interviewers={props.interviewers} onCancel={ cancel }
         />)}
     </article>
   );
