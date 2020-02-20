@@ -43,7 +43,7 @@ export default function Application(props) {
     return axios.delete(`http://localhost:8001/api/appointments/${id}`)
   }
 
-  
+  console.log(state);
   useEffect(() => {
     Promise.all([
       axios.get(`http://localhost:8001/api/days`),
