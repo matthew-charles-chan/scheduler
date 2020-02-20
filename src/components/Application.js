@@ -31,19 +31,18 @@ export default function Application(props) {
       ...state.appointments,
       [id]:appointment
     };
-    return axios.put(`http://localhost:8001/api/appointments/${id}`, appointment).then(() => {
-      setState({
+    return axios.put(`http://localhost:8001/api/appointments/${id}`, appointment)
+      .then(() => setState({
         ...state,
         appointments
       })
-    })
-  }
+    )
+  };
 
   function deleteInterview(id) {
     return axios.delete(`http://localhost:8001/api/appointments/${id}`)
-  }
+  };
 
-  console.log(state);
   useEffect(() => {
     Promise.all([
       axios.get(`http://localhost:8001/api/days`),
