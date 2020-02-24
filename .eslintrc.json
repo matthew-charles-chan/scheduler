@@ -1,4 +1,7 @@
 {
-  "extends": "react-app",
+  "extends": [
+    "react-app",
+    "../.eslintrc.json"
+  ],
   "parser": "babel-eslint"
 }

@@ -25,42 +25,42 @@ export default function Appointment(props) {
   );
   
   const create = () => {
-    transition(CREATE)
-  }
+    transition(CREATE);
+  };
 
   const cancel = () => {
-    back()
-  }
+    back();
+  };
 
   const confirm = () => {
     transition(CONFIRM);
-  }
+  };
 
   const save = (name, interviewer) => {
     const interview = {
       student: name,
       interviewer
     };
-    transition(SAVING)
+    transition(SAVING);
     props
       .bookInterview(props.id, interview)
       .then(() => transition(SHOW))
-      .catch(() => transition(ERROR_SAVE, true));  
-  }
+      .catch(() => transition(ERROR_SAVE, true));
+  };
 
   const destroy = () => {
-    transition(SAVING, true)
+    transition(SAVING, true);
     props
       .deleteInterview(props.id)
       .then(() => transition(EMPTY))
       .catch(() => transition(ERROR_DELETE, true));
-  }
+  };
 
   const edit = () => {
-    transition(EDIT)
-  }
+    transition(EDIT);
+  };
 
-    return (
+  return (
     <article className="appointment">
       <Header time={props.time}/>
       {mode === EMPTY && <Empty onAdd={create} />}
