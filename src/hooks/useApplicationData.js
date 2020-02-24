@@ -24,7 +24,7 @@ function reducer(state, action) {
       const newDays = [...state.days]
       const index0fDay = newDays.findIndex(day => day.name === state.day)
 
-      newDays[index0fDay].spots = newDays[index0fDay].spots - 1
+      newDays[index0fDay].spots = newDays[index0fDay].spots - 1;
 
       return {
         ...state,
