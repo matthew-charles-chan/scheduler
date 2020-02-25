@@ -14,6 +14,7 @@ const EMPTY = "EMPTY";
 const SHOW = "SHOW";
 const CREATE = "CREATE";
 const SAVING = "SAVING";
+const DELETING = "DELETING";
 const CONFIRM = "CONFIRM";
 const EDIT = "EDIT";
 const ERROR_SAVE = "ERROR_SAVE";
@@ -49,7 +50,7 @@ export default function Appointment(props) {
   };
 
   const destroy = () => {
-    transition(SAVING, true);
+    transition(DELETING, true);
     props
       .deleteInterview(props.id)
       .then(() => transition(EMPTY))
@@ -83,7 +84,8 @@ export default function Appointment(props) {
         <Form interviewers={props.interviewers} onCancel={ cancel } onSave={ save }
         />)}
       {mode === SAVING && <Saving message="Saving"/>}
-      {mode === CONFIRM && <Confirm onCancel = { cancel } onConfirm ={ destroy } />}
+      {mode === DELETING && <Saving message="Deleting"/>}
+      {mode === CONFIRM && <Confirm message="Are you sure you want to delete?" onCancel = { cancel } onConfirm ={ destroy } />}
       {mode === ERROR_SAVE && <Error message="Could not save appointment." onClose={ cancel } />}
       {mode === ERROR_DELETE && <Error message="Could not delete appointment." onClose={ cancel } />}
     </article>
