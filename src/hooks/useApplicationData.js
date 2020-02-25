@@ -84,13 +84,13 @@ export default function useApplicationData() {
       [id]:appointment
     };
     
-    return axios.put(`http://localhost:8001/api/appointments/${id}`, appointment)
+    return axios.put(`/api/appointments/${id}`, appointment)
       .then(() => dispatch({type: SET_INTERVIEW, value: {appointments, appointmentId: id}})
       );
   }
   
   function deleteInterview(id) {
-    return axios.delete(`http://localhost:8001/api/appointments/${id}`)
+    return axios.delete(`/api/appointments/${id}`)
       .then(() => dispatch({type: DELETE_INTERVIEW, value: { appointmentId: id }}));
   }
 
