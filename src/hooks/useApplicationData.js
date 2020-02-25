@@ -96,9 +96,9 @@ export default function useApplicationData() {
 
   useEffect(() => {
     Promise.all([
-      axios.get(`http://localhost:8001/api/days`),
-      axios.get(`http://localhost:8001/api/appointments`),
-      axios.get(`http://localhost:8001/api/interviewers`)
+      axios.get(`/api/days`),
+      axios.get(`/api/appointments`),
+      axios.get(`/api/interviewers`)
     ]).then(all => all.map(e => e.data))
       .then(([days, appointments, interviewers]) => {
         dispatch({type: SET_APPLICATION_DATA, value: {days, appointments, interviewers}});
@@ -107,6 +107,6 @@ export default function useApplicationData() {
   },[]);
 
 
-  return {state, setDay, bookInterview, deleteInterview};
+  return { state, setDay, bookInterview, deleteInterview};
 }
 
