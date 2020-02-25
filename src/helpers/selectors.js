@@ -1,3 +1,4 @@
+/* eslint-disable func-style */
 export function getAppointmentsForDay(state, day) {
   let output = [];
   state.days.forEach(stateDay => {
