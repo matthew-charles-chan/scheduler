@@ -7,17 +7,17 @@ export default function DayListItem(props) {
   const dayClass = classnames("day-list__item", {
     "day-list__item--selected": props.selected,
     "day-list__item--full": props.spots === 0
-  })
+  });
   const formatSpots = function(spots) {
-    switch(spots) {
-      case 0:
-        return 'no spots remaining';
-      case 1: 
-        return `1 spot remaining`;
-      default: 
-        return `${spots} spots remaining`;
+    switch (spots) {
+    case 0:
+      return 'no spots remaining';
+    case 1:
+      return `1 spot remaining`;
+    default:
+      return `${spots} spots remaining`;
     }
-  }
+  };
 
   return (
     <li className={dayClass} onClick={() => props.setDay(props.name)}>
