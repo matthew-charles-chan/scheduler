@@ -20,6 +20,7 @@ export default function Application(props) {
 
   const interviewers = getInterviewersForDay(state, state.day);
 
+  // get all apointments for given day and, iteare through appointments and return each appointment
   const appointments = getAppointmentsForDay(state, state.day).map((appointment) => {
     const interview = getInterview(state, appointment.interview);
     return (
