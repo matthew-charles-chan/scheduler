@@ -1,5 +1,11 @@
 # Interview Scheduler
 
+#### A react app that allows users to create, edit and delete appointments which will be dynamically displayed.
+
+- Front-end: HTML, CSS, React
+- Back-end: Node,
+- Test: Storybook, Jest, Cypress
+
 ![](scheduler_demo.gif)
 
 ## Setup
